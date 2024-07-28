@@ -95,7 +95,7 @@
 					<div class="col-lg-2">
 						<div class="site-logo">
 							<a href="<?php echo site_url(); ?>">
-								<img src="<?php echo base_url(); ?>assets/img/weelancer_logo_b.png" alt="Weelancer"/>
+								<img src="<?php echo base_url(); ?>assets/img/Weelancer_logo_b.png" alt="Weelancer"/>
 							</a>
 						</div>
 						<!-- Responsive Menu Start -->

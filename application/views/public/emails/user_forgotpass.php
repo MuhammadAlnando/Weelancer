@@ -74,12 +74,12 @@
     <br>
 
     <div class="button">
-      <a href="https://www.weelancer.com/users/forgotpass/?<?php echo 'email='.$user['email'].'&hash='.$user['hash']; ?>'" title="Click here to reset your password" target="_blank">Reset Password</a>
+      <a href="https://www.Weelancer.com/users/forgotpass/?<?php echo 'email='.$user['email'].'&hash='.$user['hash']; ?>'" title="Click here to reset your password" target="_blank">Reset Password</a>
     </div>
 
     <br>
 
-    <p class="link">Or activate using this link:<br>https://www.weelancer.com/users/forgotpass/?<?php echo 'email='.$user['email'].'&hash='.$user['hash']; ?></p>
+    <p class="link">Or activate using this link:<br>https://www.Weelancer.com/users/forgotpass/?<?php echo 'email='.$user['email'].'&hash='.$user['hash']; ?></p>
 
     <br>
 

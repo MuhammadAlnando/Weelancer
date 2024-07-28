@@ -182,7 +182,7 @@ class Employers extends CI_Controller {
     
     $this->load->library('email');
 
-    $this->email->from('info@weelancer.com', 'Weelancer');
+    $this->email->from('info@Weelancer.com', 'Weelancer');
     $this->email->to($employer['email']);
     $this->email->cc($company['email']);
     $this->email->subject('Account Activation');
@@ -382,7 +382,7 @@ class Employers extends CI_Controller {
     
     $this->load->library('email');
 
-    $this->email->from('info@weelancer.com', 'Weelancer');
+    $this->email->from('info@Weelancer.com', 'Weelancer');
     $this->email->to($employer['email']);
     $this->email->subject('Password Reset');
     $this->email->message($message);
@@ -812,7 +812,7 @@ class Employers extends CI_Controller {
       
       $this->load->library('email');
 
-      $this->email->from('info@weelancer.com', 'Weelancer');
+      $this->email->from('info@Weelancer.com', 'Weelancer');
       $this->email->to($data['email']);
       $this->email->subject('Candidate Approval');
       $this->email->message($message);
@@ -844,7 +844,7 @@ class Employers extends CI_Controller {
       
       $this->load->library('email');
 
-      $this->email->from('info@weelancer.com', 'Weelancer');
+      $this->email->from('info@Weelancer.com', 'Weelancer');
       $this->email->to($data['email']);
       $this->email->subject('Candidate Rejection');
       $this->email->message($message);

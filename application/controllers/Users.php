@@ -84,7 +84,7 @@ class Users extends CI_Controller {
     
     $this->load->library('email');
 
-    $this->email->from('info@weelancer.com', 'Weelancer');
+    $this->email->from('info@Weelancer.com', 'Weelancer');
     $this->email->to($user['email']);
     $this->email->subject('Account Activation');
     $this->email->message($message);
@@ -283,7 +283,7 @@ class Users extends CI_Controller {
     
     $this->load->library('email');
 
-    $this->email->from('info@weelancer.com', 'Weelancer');
+    $this->email->from('info@Weelancer.com', 'Weelancer');
     $this->email->to($user['email']);
     $this->email->subject('Password Reset');
     $this->email->message($message);

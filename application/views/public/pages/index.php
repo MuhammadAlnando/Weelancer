@@ -172,7 +172,7 @@
             <div class="inner-hire-left">
                <h3>Hire an employee</h3>
                <p>You can sign up as a company, post your job advertisement and select candidates from those who applied. What are you waiting for?</p>
-               <a href="/employers/signup" class="jobguru-btn-3">sign up as company</a>
+               <a href="./employers/signup" class="jobguru-btn-3">sign up as company</a>
             </div>
          </div>
       </div>

@@ -91,8 +91,8 @@
 					<div class="col-lg-2">
 						<div class="site-logo">
 							<a href="<?php echo site_url(); ?>">
-								<img src="<?php echo base_url(); ?>assets/img/weelancer_logo_w.png" alt="Weelancer" class="non-stick-logo"/>
-								<img src="<?php echo base_url(); ?>assets/img/weelancer_logo_b.png" alt="Weelancer" class="stick-logo"/>
+								<img src="<?php echo base_url(); ?>assets/img/Weelancer_logo_w.png" alt="Weelancer" class="non-stick-logo"/>
+								<img src="<?php echo base_url(); ?>assets/img/Weelancer_logo_b.png" alt="Weelancer" class="stick-logo"/>
 							</a>
 						</div>
 						<!-- Responsive Menu Start -->

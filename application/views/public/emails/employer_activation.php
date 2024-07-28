@@ -74,12 +74,12 @@
     <br>
 
     <div class="button">
-      <a href="https://www.weelancer.com/employers/activation/?<?php echo 'email='.$employer['email'].'&hash='.$employer['hash']; ?>" title="Click here to activate your account" target="_blank">Activate your Account</a>
+      <a href="https://www.Weelancer.com/employers/activation/?<?php echo 'email='.$employer['email'].'&hash='.$employer['hash']; ?>" title="Click here to activate your account" target="_blank">Activate your Account</a>
     </div>
 
     <br>
 
-    <p class="link">Or activate using this link:<br>https://www.weelancer.com/employers/activation/?<?php echo 'email='.$employer['email'].'&hash='.$employer['hash']; ?></p>
+    <p class="link">Or activate using this link:<br>https://www.Weelancer.com/employers/activation/?<?php echo 'email='.$employer['email'].'&hash='.$employer['hash']; ?></p>
 
     <br>
 

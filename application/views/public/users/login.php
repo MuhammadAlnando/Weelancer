@@ -71,7 +71,7 @@
                </div>
 
                <div class="dont_have">
-                  <a href="/employers/login" class="jobguru-btn">Login as employer</a>
+                  <a href="../employers/login" class="jobguru-btn">Login as employer</a>
                </div>
             </div>
          </div>

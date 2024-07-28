@@ -42,9 +42,9 @@
             <div class="col-lg-3 col-md-12 dashboard-left-border">
                 <div class="dashboard-left">
                     <ul class="dashboard-menu">
-                        <li <?php if($title == "Dashboard"){echo "class='active'";} ?>><a href="/users/dashboard"><i class="fa fa-tachometer"></i>Dashboard</a></li>
-                        <li <?php if($title == "My Profile"){echo "class='active'";} ?>><a href="/users/profile"><i class="fa fa-users"></i>My Profile</a></li>
-                        <li <?php if($title == "Manage Jobs"){echo "class='active'";} ?>><a href="/users/managejobs"><i class="fa fa-briefcase"></i>manage jobs</a></li>
+                        <li <?php if($title == "Dashboard"){echo "class='active'";} ?>><a href="../users/dashboard"><i class="fa fa-tachometer"></i>Dashboard</a></li>
+                        <li <?php if($title == "My Profile"){echo "class='active'";} ?>><a href="../users/profile"><i class="fa fa-users"></i>My Profile</a></li>
+                        <li <?php if($title == "Manage Jobs"){echo "class='active'";} ?>><a href="../users/managejobs"><i class="fa fa-briefcase"></i>manage jobs</a></li>
                         <li><a href="/users/logout"><i class="fa fa-power-off"></i>LogOut</a></li>
                     </ul>
                 </div>

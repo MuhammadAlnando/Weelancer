@@ -29,7 +29,7 @@
                   <p><i class="fa fa-map-marker"></i> University of Thessaly, 411 10, Larissa, Greece</p>
                   <div class="single-contact-btn">
                      <h4>Email Us</h4>
-                     <a href="mailto:info@weelancer.com" class="jobguru-btn-2">info@weelancer.com</a>
+                     <a href="mailto:info@Weelancer.com" class="jobguru-btn-2">info@Weelancer.com</a>
                   </div>
                </div>
             </div>

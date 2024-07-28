@@ -108,7 +108,7 @@
 
         doc.text('Weelancer!', 10, 60)
         doc.text('Under Construction...', 10, 100)
-        doc.save('weelancer-data.pdf')
+        doc.save('Weelancer-data.pdf')
 
 	}
 </script>

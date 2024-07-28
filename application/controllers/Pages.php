@@ -59,7 +59,7 @@ class Pages extends CI_Controller {
     $this->load->library('email');
 
     $this->email->from($data['email'], $data['username']);
-    $this->email->to('info@weelancer.com');
+    $this->email->to('info@Weelancer.com');
     $this->email->subject($data['subject']);
     $this->email->message($message);
 
