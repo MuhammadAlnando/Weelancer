@@ -6,8 +6,8 @@
             <div class="col-md-12">
                <div class="breadcromb-box-pagin">
                   <ul>
-                     <li><a href="/">home</a></li>
-                     <li class="active-breadcromb"><a href="">About us</a></li>
+                     <li><a href="/">Home</a></li>
+                     <li class="active-breadcromb"><a href="#">Training</a></li>
                   </ul>
                </div>
             </div>
@@ -16,47 +16,57 @@
    </div>
 </section>
 <!-- Breadcromb Area End -->
-   
-<!-- About Area Start -->
-<section class="jobguru-about-page section_70">
+
+<!-- Training Area Start -->
+<section class="jobguru-about-area section_70">
    <div class="container">
       <div class="row">
          <div class="col-md-12">
-            <div class="about-main-box">
-               <p>We are undergraduate students at University of Thessaly. Both of us like web development and Weelancer is our thesis.</p>
+            <div class="about-heading">
+               <h2>Training Kerja untuk Peningkatan Keterampilan</h2>
+               <p>Meningkatkan Keterampilan untuk Mencapai Karir yang Lebih Baik</p>
             </div>
          </div>
       </div>
+
       <div class="row">
-         <div class="col-lg-6 col-md-12">
-            <div class="single-about-box">
-               <div class="about-box-img">
-                  <a href="#">
-                  <img class="aboutusimg" src="<?php echo base_url(); ?>assets/img/vaggelisdel.jpg" alt="about image" />
-                  </a>
-               </div>
-               <div class="about-box-text">
-                  <h3>Dellios Evangelos</h3>
-               <a target="_blank" href="https://www.facebook.com/vaggelisdell"><i class="fa fa-facebook-official socialicons" aria-hidden="true"></i></a>
-               <a target="_blank" href="https://www.linkedin.com/in/vaggelisdel/"><i class="fa fa-linkedin-square socialicons" aria-hidden="true"></i></a>
-               </div>
+         <div class="col-md-6">
+            <div class="about-text">
+               <h3>Apa Itu Training Peningkatan Keterampilan?</h3>
+               <p>Training peningkatan keterampilan adalah program pelatihan yang dirancang untuk membantu karyawan atau individu dalam mengembangkan keterampilan baru, meningkatkan kemampuan yang sudah ada, dan mempersiapkan diri untuk tantangan di tempat kerja. Dengan mengikuti pelatihan ini, peserta dapat memperluas pengetahuan mereka dan meningkatkan produktivitas serta efisiensi dalam pekerjaan sehari-hari.</p>
+               
+               <h3>Manfaat dari Training Ini</h3>
+               <ul>
+                  <li>Memperoleh keterampilan baru yang relevan dengan industri saat ini.</li>
+                  <li>Meningkatkan kesempatan untuk promosi dan kemajuan karir.</li>
+                  <li>Meningkatkan rasa percaya diri dalam menghadapi tugas-tugas pekerjaan yang lebih menantang.</li>
+                  <li>Mengurangi kesenjangan keterampilan yang mungkin ada di dalam tim.</li>
+               </ul>
             </div>
          </div>
-         <div class="col-lg-6 col-md-12">
-            <div class="single-about-box">
-               <div class="about-box-img">
-                  <a href="#">
-                  <img class="aboutusimg" src="<?php echo base_url(); ?>assets/img/dimitrisgan.jpg" alt="about image" />
-                  </a>
-               </div>
-               <div class="about-box-text">
-                  <h3>Ganotis Dimitrios</h3>
-               <a target="_blank" href="https://www.facebook.com/dimitrisgan97"><i class="fa fa-facebook-official socialicons" aria-hidden="true"></i></a>
-               <a target="_blank" href="https://www.linkedin.com/in/dimitrisgan97/"><i class="fa fa-linkedin-square socialicons" aria-hidden="true"></i></a>
-               </div>
+
+         <div class="col-md-6">
+            <div class="about-image">
+               <img src="https://assets-a1.kompasiana.com/items/album/2021/05/05/train-to-grow-blog-6091ebd68ede487224337b23.jpg" alt="Training Peningkatan Keterampilan" />
+            </div>
+         </div>
+      </div>
+
+      <div class="row mt-5">
+         <div class="col-md-12">
+            <div class="about-text">
+               <h3>Program Pelatihan yang Ditawarkan</h3>
+               <p>Kami menawarkan berbagai program pelatihan yang difokuskan pada peningkatan keterampilan di berbagai bidang, termasuk:</p>
+               <ul>
+                  <li>Pengembangan keterampilan teknologi dan digital</li>
+                  <li>Kepemimpinan dan manajemen tim</li>
+                  <li>Keterampilan komunikasi yang efektif</li>
+                  <li>Manajemen proyek dan produktivitas</li>
+               </ul>
+               <p>Setiap program dirancang untuk memberikan pelatihan yang komprehensif dan mendalam, sehingga peserta dapat langsung menerapkan keterampilan yang dipelajari di tempat kerja mereka.</p>
             </div>
          </div>
       </div>
    </div>
 </section>
-<!-- About Area End -->
+<!-- Training Area End -->

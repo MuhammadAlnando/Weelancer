@@ -22,7 +22,7 @@
                   <h2>Find Your Future Job.</h2>
                   <h4>We have <b><?php echo $total_jobs; ?></b> job offers for you! </h4>
                   
-                  <form method="GET" accept-charset="utf-8" action="<?php echo site_url('jobs/jobslist'); ?>" id="form">
+                  <form method="GET" accept-charset="utf-8" action="<?php echo site_url('jobs/jobslist'); ?>" id="form"  style="border:none;">
                      <div class="banner-form-box">
                         <div class="banner-form-input">
                            <input type="text" name="search" placeholder="Search Job Title">
@@ -33,7 +33,7 @@
                         </div>
                         
                         <div class="banner-form-input">
-                           <button type="submit"><span id="search_span">Search Jobs</span> &nbsp;<i class="fa fa-search"></i></button>
+                           <button type="submit" style="background-color:brown;"><span id="search_span">Search Jobs</span> &nbsp;<i class="fa fa-search"></i></button>
                         </div>
                      </div>
                

@@ -7,7 +7,7 @@
                     <div class="single-footer-widget">
                         <div class="footer-logo">
                             <a href="index-2.html">
-                                <img src="<?php echo base_url(); ?>assets/img/Weelancer_logo_w.png" alt="Weelancer" />
+                                <img src="<?php echo base_url(); ?>assets/img/Jobify_logo.png" alt="Weelancer" />
                             </a>
                         </div>
                         <p class="mb-2">Weelancer is an online job finding platform that helps employers find the right people for their company.</p>
@@ -43,7 +43,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="copyright-left">
-                        <p>Weelancer.com &copy; <?php echo date("Y"); ?>. All Rights Reserved</p>
+                        <p>Jobify.com &copy; <?php echo date("Y"); ?>. All Rights Reserved</p>
                     </div>
                 </div>
             </div>

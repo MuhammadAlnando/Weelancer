@@ -58,7 +58,7 @@
                   </div>
 
                   <div class="remember-row single-login-field clearfix">
-                     <p class="lost-pass"><a href="/users/forgotpass">forgot password?</a></p>
+                     <p class="lost-pass"><a href="../users/forgotpass">forgot password?</a></p>
                   </div>
 
                   <div class="single-login-field">
@@ -67,12 +67,14 @@
                </form>
 
                <div class="dont_have">
-                  <a href="/users/signup">Don't have an account?</a>
+                  <a href="../users/signup">Don't have an account?</a>
                </div>
 
                <div class="dont_have">
                   <a href="../employers/login" class="jobguru-btn">Login as employer</a>
+                  <a href="../admin/login" class="jobguru-btn">Login as admin</a>
                </div>
+              
             </div>
          </div>
       </div>

@@ -49,42 +49,7 @@
 <body>
 	<div class="side-nav-screen-hold" style="display:none"></div>
 	<div class="side-nav side-nav-container-closed" id="bs-example-navbar-collapse-1">
-		<?php if ($this->session->userdata('user_id')) { ?>
-			<div class="d-flex bottom-menu-btns">
-				<a href="<?php echo site_url('users/dashboard'); ?>" class="post-jobs col-sm-6">Dashboard</a>
-				<a href="<?php echo site_url('users/logout'); ?>" class="post-jobs col-sm-6"><i class="fa fa-sign-out"></i>&nbsp;Logout</a>
-			</div>
-		<?php } else if ($this->session->userdata('employer_id')) { ?>
-			<div class="d-flex bottom-menu-btns">
-				<a href="<?php echo site_url('employers/dashboard'); ?>" class="post-jobs col-sm-6">Dashboard</a>
-				<a href="<?php echo site_url('employers/logout'); ?>" class="post-jobs col-sm-6"><i class="fa fa-sign-out"></i>&nbsp;Logout</a>
-			</div>
-		<?php } ?>
-
-		<?php if (!$this->session->userdata('user_id') && !$this->session->userdata('employer_id')) { ?>
-			<div class="d-flex bottom-menu-btns">
-				<a href="<?php echo site_url('users/signup'); ?>" class="post-jobs col-sm-6"><i class="fa fa-user"></i>&nbsp; Sign up</a>
-				<a href="<?php echo site_url('users/login'); ?>" class="post-jobs col-sm-6"><i class="fa fa-lock"></i>&nbsp; Login</a>
-			</div>
-		<?php } ?>
-
-		<ul class="nav navbar-nav navbar-right">
-			<li class="mobile-menu-links <?php if($title == "Weelancer") echo 'active'; ?>">
-				<a href="<?php echo site_url(); ?>">Home</a>
-			</li>
-
-			<li class="mobile-menu-links <?php if($title == "Browse Jobs") echo 'active'; ?>">
-				<a href="<?php echo site_url('jobs/jobslist'); ?>">Browse Jobs</a>
-			</li>
-
-			<li class="mobile-menu-links <?php if($title == "About Us") echo 'active'; ?>">
-				<a href="<?php echo site_url('about'); ?>">Training</a>
-			</li>
-
-			<li class="mobile-menu-links <?php if($title == "Contact Us") echo 'active'; ?>">
-				<a href="<?php echo site_url('contact'); ?>">Contact Us</a>
-			</li>
-		</ul>
+		
 	</div>
 
 	<!-- Header Area Start -->
@@ -113,44 +78,13 @@
 					<div class="col-lg-6">
 						<div class="header-menu">
 							<nav id="navigation">
-								<ul id="jobguru_navigation">
-									<li <?php if($title == "Weelancer") echo 'class="current_page"'; ?>>
-										<a href="<?php echo site_url(); ?>">home</a>
-									</li>
-
-									<li <?php if($title == "Browse Jobs") echo 'class="current_page"'; ?>>
-										<a href="<?php echo site_url('jobs/jobslist'); ?>">browse jobs</a>
-									</li>
-
-									<li <?php if($title == "About Us") echo 'class="current_page"'; ?>>
-										<a href="<?php echo site_url('about'); ?>">training</a>
-									</li>
-
-									<li <?php if($title == "Contact Us") echo 'class="current_page"'; ?>>
-										<a href="<?php echo site_url('contact'); ?>">contact us</a>
-									</li>
-								</ul>
+								
 							</nav>
 						</div>
 					</div>
 					<div class="col-lg-4">
 						<div class="header-right-menu">
-							<ul>
-								<?php if ($this->session->userdata('user_id')) { ?>
-									<li><a href="<?php echo site_url('users/dashboard'); ?>" class="post-jobs">Dashboard</a></li>
-								<?php } else if ($this->session->userdata('employer_id')) { ?>
-									<li><a href="<?php echo site_url('employers/dashboard'); ?>" class="post-jobs">Dashboard</a></li>
-								<?php } ?>
-
-								<?php if (!$this->session->userdata('user_id') && !$this->session->userdata('employer_id')) { ?>
-									<li><a href="<?php echo site_url('users/signup'); ?>"><i class="fa fa-user"></i>sign up</a></li>
-									<li><a href="<?php echo site_url('users/login'); ?>"><i class="fa fa-lock"></i>login</a></li>
-								<?php } else if ($this->session->userdata('user_id')) { ?>
-									<li><a href="<?php echo site_url('users/logout'); ?>"><i class="fa fa-sign-out"></i>logout</a></li>
-								<?php } else if ($this->session->userdata('employer_id')) { ?>
-									<li><a href="<?php echo site_url('employers/logout'); ?>"><i class="fa fa-sign-out"></i>logout</a></li>
-								<?php } ?>
-							</ul>
+							
 						</div>
 					</div>
 				</div>

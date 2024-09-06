@@ -8,7 +8,7 @@
 			<h3 class="profile_strength">Profile Level: <b><?php echo $user['account_level']; ?></b></h3>
 			<p class="profile_percentage">You have complete <b><?php echo $user['account_completion']; ?>%</b> of your profile.</p>
 			<div class="progress">
-				<div class="progress-bar progress-bar-animated animated slideInLeft" style="width: <?php echo $user['account_completion']; ?>%; background-color: #25AD60; animation-iteration-count: 1; border-right: 3px solid #333"></div>
+				<div class="progress-bar progress-bar-animated animated slideInLeft" style="width: <?php echo $user['account_completion']; ?>%; background-color: #FFFFFF; animation-iteration-count: 1; border-right: 3px solid #333"></div>
 			</div>
 		</div>
 
@@ -125,8 +125,8 @@
         text: {
             autoStyleContainer: false
         },
-        from: {color: '#25AD60', width: 5},
-        to: {color: '#25AD60', width: 5},
+        from: {color: '#FFFFFF', width: 5},
+        to: {color: '#FFFFFF', width: 5},
         // Set default step function for all animate calls
         step: function (state, circle) {
             circle.path.setAttribute('stroke', state.color);

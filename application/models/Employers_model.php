@@ -97,14 +97,18 @@ class Employers_model extends CI_Model {
 
   // Δημιουργία Εργοδότη
   public function add($employer) {
+    // Set 'active' menjadi 1 agar akun langsung aktif
+    $employer['active'] = 1;
+    
+    // Insert employer data ke dalam database
     $this->db->insert('employers', $employer);
 
     if($this->db->affected_rows() > 0) {
-      return 'success';
+        return 'success';
     } else {
-      return 'error';
+        return 'error';
     }
-  }
+}
 
   // Επεξεργασία Εργοδότη
   public function update($employer) {
@@ -123,6 +127,29 @@ class Employers_model extends CI_Model {
     $this->db->where('id', $id);
     $this->db->delete('employers');
   }
+
+  public function get_employers_count() {
+    return $this->db->count_all('employers');
+}
+
+public function get_all_employers() {
+  $query = $this->db->get('employers');
+  return $query->result(); // Fetches all rows as an array of objects
+}
+
+public function insert_employer($data) {
+  return $this->db->insert('employers', $data);
+}
+
+public function update_employer($id, $data) {
+  $this->db->where('id', $id);
+  return $this->db->update('employers', $data);
+}
+
+public function delete_employer($id) {
+  $this->db->where('id', $id);
+  return $this->db->delete('employers');
+}
 
   // Ενεργοποίηση Λογαριασμού (update active status)
   public function activation($employer) {

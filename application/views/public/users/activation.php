@@ -35,7 +35,7 @@
         </div>-->
 
         <div class="dont_have">
-            <a href="/" class="jobguru-btn">Return to home</a>
+            <a href="../" class="jobguru-btn">Return to home</a>
         </div>
     </div>
 </section>

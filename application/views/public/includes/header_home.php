@@ -74,7 +74,7 @@
 			</li>
 
 			<li class="mobile-menu-links <?php if($title == "About Us") echo 'active'; ?>">
-				<a href="<?php echo site_url('about'); ?>">About Us</a>
+				<a href="<?php echo site_url('about'); ?>">Training</a>
 			</li>
 
 			<li class="mobile-menu-links <?php if($title == "Contact Us") echo 'active'; ?>">
@@ -91,8 +91,8 @@
 					<div class="col-lg-2">
 						<div class="site-logo">
 							<a href="<?php echo site_url(); ?>">
-								<img src="<?php echo base_url(); ?>assets/img/Weelancer_logo_w.png" alt="Weelancer" class="non-stick-logo"/>
-								<img src="<?php echo base_url(); ?>assets/img/Weelancer_logo_b.png" alt="Weelancer" class="stick-logo"/>
+								<img src="<?php echo base_url(); ?>assets/img/Jobify_logo.png" alt="Weelancer" class="non-stick-logo"/>
+								<img src="<?php echo base_url(); ?>assets/img/Jobify_logo.png" alt="Weelancer" class="stick-logo"/>
 							</a>
 						</div>
 						<!-- Responsive Menu Start -->
@@ -121,7 +121,7 @@
 									</li>
 
 									<li <?php if($title == "About Us") echo 'class="current_page"'; ?>>
-										<a href="<?php echo site_url('about'); ?>">about us</a>
+										<a href="<?php echo site_url('about'); ?>">training</a>
 									</li>
 
 									<li <?php if($title == "Contact Us") echo 'class="current_page"'; ?>>

@@ -2,16 +2,16 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Employers extends CI_Controller {
+class Admin extends CI_Controller {
   protected $metadata = array(
     'title' => null,
-    'description' => 'Weelancer is an online job finding platform that helps employers find the right people for their company.'
+    'description' => 'Weelancer is an online job finding platform that helps admin find the right people for their company.'
   );
 
   public function __construct() {
     parent::__construct();
     $this->load->model('companies_model');
-    $this->load->model('employers_model');
+    $this->load->model('admin_model');
     $this->load->model('jobs_model');
   }
 
@@ -24,7 +24,7 @@ class Employers extends CI_Controller {
     $this->metadata['title'] = 'Sign Up Company';
 
     // Έλεγχος αν ο εργοδότης έχει κάνει login
-    if($this->session->userdata('employer_id')) {
+    if($this->session->userdata('admin_id')) {
       $this->session->set_flashdata('error', "You are already connected!"); 
       redirect('/');
     }
@@ -49,15 +49,15 @@ class Employers extends CI_Controller {
     $this->form_validation->set_rules('linkedin', 'Linkedin', 'valid_url');
     $this->form_validation->set_rules('website', 'Website', 'valid_url');
     $this->form_validation->set_rules('username', 'Username', 'required|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z _-]+$/]');
-    $this->form_validation->set_rules('employer_email', 'Email', 'required|min_length[5]|max_length[100]|valid_email|callback_check_employer_email');
+    $this->form_validation->set_rules('admin_email', 'Email', 'required|min_length[5]|max_length[100]|valid_email|callback_check_admin_email');
     $this->form_validation->set_rules('password', 'Password', 'required|min_length[4]|max_length[100]');
     $this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required|matches[password]');
 
     // Έλεγχος αν πέτυχε το validation των στοιχείων της εταιριας
     if ($this->form_validation->run() === FALSE) {
-      $this->load->view('public/includes/header', $this->metadata);
-      $this->load->view('public/employers/signup_company', $data);
-      $this->load->view('public/includes/footer');
+      $this->load->view('public/includes/header_admin', $this->metadata);
+      $this->load->view('public/admin/signup_company', $data);
+      $this->load->view('public/includes/footer_admin');
     } else {
       $company = array(
         'title' => $this->input->post('title'),
@@ -89,9 +89,9 @@ class Employers extends CI_Controller {
           $image = $this->upload->data();
         } else {
           $this->session->set_flashdata('error', "Error uploading your image!"); 
-          $this->load->view('public/includes/header', $this->metadata);
+          $this->load->view('public/includes/header_admin', $this->metadata);
           $this->load->view('public/pages/alert');
-          $this->load->view('public/includes/footer');  
+          $this->load->view('public/includes/footer_admin');  
           die(); 
         }
         
@@ -100,26 +100,26 @@ class Employers extends CI_Controller {
 
       $resultCompany = $this->companies_model->add($company);
 
-      $employer = array(
+      $admin = array(
         'username' => $this->input->post('username'),
         'company_id' => $resultCompany['comany_id'],
-        'email' => $this->input->post('employer_email'),
+        'email' => $this->input->post('admin_email'),
         'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT, array('cost' => 10)),
         'hash' => md5(rand(0, 100)),
         'profession' => 'Boss'
       );
 
-      $resultEmployer = $this->employers_model->add($employer);
+      $resultAdmin = $this->admin_model->add($admin);
 
-      if($resultCompany['message'] === 'error' || $resultEmployer === 'error') {
+      if($resultCompany['message'] === 'error' || $resultAdmin === 'error') {
         $this->session->set_flashdata('error', "There was an error with your sign up!"); 
-        redirect('employers/signup');
-      } else if($resultCompany['message'] === 'success' && $resultEmployer === 'success') {
-        $this->activation_email($company, $employer);
+        redirect('admin/signup');
+      } else if($resultCompany['message'] === 'success' && $resultAdmin === 'success') {
+        $this->activation_email($company, $admin);
 
-        $this->load->view('public/includes/header', $this->metadata);
-        $this->load->view('public/employers/activation');
-        $this->load->view('public/includes/footer');    
+        $this->load->view('public/includes/header_admin', $this->metadata);
+        $this->load->view('public/admin/activation');
+        $this->load->view('public/includes/footer_admin');    
       }
     }
   }
@@ -160,10 +160,10 @@ class Employers extends CI_Controller {
   }
 
   // Sign up validation rule για το email του εργοδότη 
-  public function check_employer_email($email) {
-    $this->form_validation->set_message('check_employer_email', 'This <b>{field}</b> already exists. Please use a different one!');
+  public function check_admin_email($email) {
+    $this->form_validation->set_message('check_admin_email', 'This <b>{field}</b> already exists. Please use a different one!');
 
-    if($this->employers_model->check_email($email)) {
+    if($this->admin_model->check_email($email)) {
       return TRUE;
     } else {
       return FALSE;
@@ -171,19 +171,19 @@ class Employers extends CI_Controller {
   }
 
   // Αποστολή email στο χρήστη για ενεργοποίηση λογαριασμού
-  public function activation_email($company, $employer) {
+  public function activation_email($company, $admin) {
     $data = array(
-      'employer' => $employer,
+      'admin' => $admin,
       'company' => $company,
       'year' => date("Y")
     );
 
-    $message = $this->load->view('public/emails/employer_activation', $data, TRUE);
+    $message = $this->load->view('public/emails/admin_activation', $data, TRUE);
     
     $this->load->library('email');
 
     $this->email->from('info@Weelancer.com', 'Weelancer');
-    $this->email->to($employer['email']);
+    $this->email->to($admin['email']);
     $this->email->cc($company['email']);
     $this->email->subject('Account Activation');
     $this->email->message($message);
@@ -200,22 +200,22 @@ class Employers extends CI_Controller {
   public function activation() {
     $this->metadata['title'] = 'Account Activation';
 
-    $employer = array(
+    $admin = array(
       'email' => $this->input->get('email'),
       'hash' => $this->input->get('hash')
     );
 
     // Έλεγχος αν στο url υπάρχει email και hash χρήστη
     // Αν δεν υπάρχουν να μην υπάρχει πρόσβαση στη μέθοδο
-    if($employer['email'] !== NULL && $employer['hash'] !== NULL) {
-      $employerDB = $this->employers_model->search_by_email($employer['email']);
+    if($admin['email'] !== NULL && $admin['hash'] !== NULL) {
+      $adminDB = $this->admin_model->search_by_email($admin['email']);
 
       // Έλεγχος αν υπάρχει το email στη Βάση Δεδομένων
       // Έλεγχος αν το hash που υπάρχει στο url είναι ίδιο με το hash της Βάσης Δεδομένων
-      if(is_null($employerDB)) {
+      if(is_null($adminDB)) {
         redirect('/');
-      } else if($employer['hash'] == $employerDB['hash']) {
-        $result = $this->employers_model->activation($employer);
+      } else if($admin['hash'] == $adminDB['hash']) {
+        $result = $this->admin_model->activation($admin);
 
         if($result === 'success') {
           $this->session->set_flashdata('success_active', "The activation of your account was successful.<br>You can now login!"); 
@@ -229,9 +229,9 @@ class Employers extends CI_Controller {
       redirect('/');
     }
 
-    $this->load->view('public/includes/header', $this->metadata);
-    $this->load->view('public/employers/activation');
-    $this->load->view('public/includes/footer');
+    $this->load->view('public/includes/header_admin', $this->metadata);
+    $this->load->view('public/admin/activation');
+    $this->load->view('public/includes/footer_admin');
   }
 
   // #########################################################################
@@ -240,12 +240,12 @@ class Employers extends CI_Controller {
 
   // Σύνδεση Εργοδότη
   public function login() {
-    $this->metadata['title'] = 'Login Employer';
+    $this->metadata['title'] = 'Login Admin';
 
     // Έλεγχος αν ο εργοδότης έχει κάνει login
-    if($this->session->userdata('employer_id')) {
+    if($this->session->userdata('admin_id')) {
       $this->session->set_flashdata('error', "You are already connected!"); 
-      redirect('/');
+      redirect('admin/dashboard');
     }
 
     $this->form_validation->set_rules('email', 'Email', 'required');
@@ -253,32 +253,32 @@ class Employers extends CI_Controller {
 
     // Έλεγχος αν πέτυχε το validation των στοιχείων του εργοδότη
     if ($this->form_validation->run() === FALSE) {
-      $this->load->view('public/includes/header', $this->metadata);
-      $this->load->view('public/employers/login_employer');
-      $this->load->view('public/includes/footer');
+      $this->load->view('public/includes/header_loginadmin', $this->metadata);
+      $this->load->view('public/admin/login_admin');
+      $this->load->view('public/includes/footer_admin');
     } else {
-      $employer = array(
+      $admin = array(
         'email' => $this->input->post('email'),
         'password' => $this->input->post('password')
       );
 
       // Εύρεση στοιχείων χρήστη στη Βάση Δεδομένων
-      $result = $this->employers_model->login($employer);
+      $result = $this->admin_model->login($admin);
 
       if($result['message'] === 'success') {
         $user_id = $result['user_id'];
-        $this->session->set_userdata('employer_id', $user_id);
-        redirect('/');
+        $this->session->set_userdata('admin_id', $user_id);
+        redirect('admin/dashboard');
       } else if($result['message'] === 'error') {
         $this->session->set_flashdata('error', "Credentials are wrong. Try again!"); 
-        $this->load->view('public/includes/header', $this->metadata);
-        $this->load->view('public/employers/login_employer');
-        $this->load->view('public/includes/footer');
+        $this->load->view('public/includes/header_loginadmin', $this->metadata);
+        $this->load->view('public/admin/login_admin');
+        $this->load->view('public/includes/footer_admin');
       } else if($result['message'] === 'error_active') {
         $this->session->set_flashdata('error', "You have to activate your account!"); 
-        $this->load->view('public/includes/header', $this->metadata);
-        $this->load->view('public/employers/login_employer');
-        $this->load->view('public/includes/footer');
+        $this->load->view('public/includes/header_loginadmin', $this->metadata);
+        $this->load->view('public/admin/login_admin');
+        $this->load->view('public/includes/footer_admin');
       }
     } 
   }
@@ -286,7 +286,7 @@ class Employers extends CI_Controller {
   // Forgot και reset κωδικού εργοδότη
   public function forgotpass() {
 
-    $employer = array(
+    $admin = array(
       'email' => $this->input->get('email'),
       'hash' => $this->input->get('hash')
     );
@@ -294,7 +294,7 @@ class Employers extends CI_Controller {
     // Αν στο url δεν υπάρχουν το email και το hash του εργοδότη 
     // να του εμφανίσει την σελίδα για να συμπληρώσει το email του
     // Αν υπάρχουν και ειναι σωστά να αλλαζει ο κωδικός του χρήστη
-    if($employer['email'] === NULL && $employer['hash'] === NULL) {
+    if($admin['email'] === NULL && $admin['hash'] === NULL) {
       $this->metadata['title'] = 'Forgot Password';
 
       // Έλεγχος email εργοδότη
@@ -302,29 +302,29 @@ class Employers extends CI_Controller {
 
       // Έλεγχος αν πέτυχε το validation των στοιχείων του εργοδότη
       if ($this->form_validation->run() === FALSE) {
-        $this->load->view('public/includes/header', $this->metadata);
-        $this->load->view('public/employers/forgotpass');
-        $this->load->view('public/includes/footer');
+        $this->load->view('public/includes/header_admin', $this->metadata);
+        $this->load->view('public/admin/forgotpass');
+        $this->load->view('public/includes/footer_admin');
       } else {
         $email = $this->input->post('email');
         
-        $employerDB = $this->employers_model->search_by_email($email);
+        $adminDB = $this->admin_model->search_by_email($email);
 
-        $this->forgotpass_email($employerDB);
+        $this->forgotpass_email($adminDB);
 
-        $this->load->view('public/includes/header', $this->metadata);
-        $this->load->view('public/employers/forgotpass_message');
-        $this->load->view('public/includes/footer');
+        $this->load->view('public/includes/header_admin', $this->metadata);
+        $this->load->view('public/admin/forgotpass_message');
+        $this->load->view('public/includes/footer_admin');
       }
-    } else if($employer['email'] !== NULL && $employer['hash'] !== NULL) {
-      $employerDB = $this->employers_model->search_by_email($employer['email']);
+    } else if($admin['email'] !== NULL && $admin['hash'] !== NULL) {
+      $adminDB = $this->admin_model->search_by_email($admin['email']);
 
       // Έλεγχος αν το hash που υπάρχει στο url είναι ίδιο με το hash της Βάσης Δεδομένων
-      if($employer['hash'] == $employerDB['hash']) {
+      if($admin['hash'] == $adminDB['hash']) {
         $this->metadata['title'] = 'Reset Password';
 
         // Παραμετροι url
-        $data['url'] = '?email='.$employerDB['email'].'&'.'hash='.$employerDB['hash'];
+        $data['url'] = '?email='.$adminDB['email'].'&'.'hash='.$adminDB['hash'];
 
         // Έλεγχος password χρήστη
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[4]|max_length[100]');
@@ -332,17 +332,17 @@ class Employers extends CI_Controller {
 
         // Έλεγχος αν πέτυχε το validation των password
         if ($this->form_validation->run() === FALSE) {
-          $this->load->view('public/includes/header', $this->metadata);
-          $this->load->view('public/employers/resetpass', $data);
-          $this->load->view('public/includes/footer');
+          $this->load->view('public/includes/header_admin', $this->metadata);
+          $this->load->view('public/admin/resetpass', $data);
+          $this->load->view('public/includes/footer_admin');
         } else {
-          $employerDBnewPass = array(
-            'id' => $employerDB['id'],
+          $adminDBnewPass = array(
+            'id' => $adminDB['id'],
             'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT, array('cost' => 10))
           );
         
           // Εισαγωγή password χρήστη στη Βάση Δεδομένων
-          $result = $this->employers_model->update($employerDBnewPass);
+          $result = $this->admin_model->update($adminDBnewPass);
 
           if($result === 'success') {
             $this->session->set_flashdata('success', "You successfully changed your password.<br>You can now login!"); 
@@ -350,9 +350,9 @@ class Employers extends CI_Controller {
             $this->session->set_flashdata('error', "There was an error reseting your password.<br>Try again!"); 
           }
 
-          $this->load->view('public/includes/header', $this->metadata);
-          $this->load->view('public/employers/forgotpass_message');
-          $this->load->view('public/includes/footer');
+          $this->load->view('public/includes/header_admin', $this->metadata);
+          $this->load->view('public/admin/forgotpass_message');
+          $this->load->view('public/includes/footer_admin');
         }
       } else {
         redirect('/');
@@ -364,7 +364,7 @@ class Employers extends CI_Controller {
   public function check_email_forgot($email) {
     $this->form_validation->set_message('check_email_forgot', 'This <b>{field}</b> doesn&apos;t exists.');
 
-    if($this->employers_model->check_email($email)) {
+    if($this->admin_model->check_email($email)) {
       return false;
     } else {
       return true;
@@ -372,18 +372,18 @@ class Employers extends CI_Controller {
   }
 
   // Αποστολή email στο χρήστη για επαναφορά κωδικού
-  public function forgotpass_email($employer) {
+  public function forgotpass_email($admin) {
     $data = array(
-      'employer' => $employer,
+      'admin' => $admin,
       'year' => date("Y")
     );
 
-    $message = $this->load->view('public/emails/employer_forgotpass', $data, TRUE);
+    $message = $this->load->view('public/emails/admin_forgotpass', $data, TRUE);
     
     $this->load->library('email');
 
     $this->email->from('info@Weelancer.com', 'Weelancer');
-    $this->email->to($employer['email']);
+    $this->email->to($admin['email']);
     $this->email->subject('Password Reset');
     $this->email->message($message);
 
@@ -404,9 +404,9 @@ class Employers extends CI_Controller {
     $this->metadata['title'] = 'Logout';
 
     // Έλεγχος αν ο εργοδότης έχει κάνει login
-    if($this->session->userdata('employer_id')) {
-      $this->session->unset_userdata('employer_id');
-      redirect('employers/login');
+    if($this->session->userdata('admin_id')) {
+      $this->session->unset_userdata('admin_id');
+      redirect('admin/login');
     } else {
       redirect('/');
     }
@@ -416,49 +416,215 @@ class Employers extends CI_Controller {
   // ###################### ... ######################
   // #################################################
 
-  // Employer Dashboard
+  // Admin Dashboard
   public function dashboard() {
     $this->metadata['title'] = 'Dashboard';
+    $this->load->model('Users_model');
+        $this->load->model('Employers_model');
+        $this->load->model('Companies_model');
+        $this->load->model('Jobs_model');
+
+        $data['users_count'] = $this->Users_model->get_users_count();
+        $data['employers_count'] = $this->Employers_model->get_employers_count();
+        $data['companies_count'] = $this->Companies_model->get_companies_count();
+        $data['jobs_count'] = $this->Jobs_model->get_jobs_count();
 
     // Έλεγχος αν ο εργοδότης έχει κάνει login
-    if(!$this->session->userdata('employer_id')) {
+    if(!$this->session->userdata('admin_id')) {
       $this->session->set_flashdata('error', "You must login to your account!"); 
-      redirect('employers/login');
+      redirect('admin/login');
     }
 
-    $employer = $this->employers_model->search($this->session->userdata('employer_id'));
-    $company = $this->companies_model->search($employer['company_id']);
+    $admin = $this->admin_model->search($this->session->userdata('admin_id'));
 
-    $data['company'] = $company;
-    $data['employer'] = $employer;
-    $data['company']['posted_jobs'] = $this->jobs_model->company_posted_jobs($company['id']);
-    $data['company']['jobs_views'] = $this->jobs_model->company_jobs_views($company['id'])->views;
-    $data['company']['total_employers'] = count($this->employers_model->select_company($company['id']));
-    $data['employer']['approves'] = $this->jobs_model->company_applications_approved($company['id']);
-    $data['employer']['rejections'] = $this->jobs_model->company_applications_rejected($company['id']);
-    $data['employer']['pending'] = $this->jobs_model->company_applications_pending($company['id']);
-    $data['employer']['total'] = $data['employer']['pending'] + $data['employer']['approves'] + $data['employer']['rejections'];
-
-    $this->load->view('public/includes/header', $this->metadata);
-    $this->load->view('public/includes/employer_menu', $this->metadata);
-    $this->load->view('public/employers/dashboard', $data);
-    $this->load->view('public/includes/footer');
+    $data['admin'] = $admin;
+  
+    $this->load->view('public/includes/header_admin', $this->metadata);
+    $this->load->view('public/admin/dashboard', $data);
+    $this->load->view('public/includes/footer_admin');
   }
 
-  // Delete company και employers
+  // In application/controllers/Admin.php
+
+// In application/controllers/Admin.php
+
+public function employers() {
+  $this->metadata['title'] = 'Employers';
+  $this->load->model('Employers_model'); // Ensure this model is loaded
+
+  // Fetch the data
+  $data['employers'] = $this->Employers_model->get_all_employers();
+
+// Έλεγχος αν ο εργοδότης έχει κάνει login
+if(!$this->session->userdata('admin_id')) {
+$this->session->set_flashdata('error', "You must login to your account!"); 
+redirect('admin/login');
+}
+
+  // Load the view
+  $admin = $this->admin_model->search($this->session->userdata('admin_id'));
+
+    $data['admin'] = $admin;
+
+  $this->load->view('public/includes/header_admin', $this->metadata);
+  $this->load->view('public/admin/employers', $data);
+  $this->load->view('public/includes/footer_admin');
+}
+
+public function employer($id = NULL) {
+  if ($id === NULL) {
+      $this->load->view('public/admin/employer_form');
+  } else {
+      $data['employer'] = $this->Employers_model->get_employer($id);
+      $this->load->view('public/admin/employer_form', $data);
+  }
+}
+
+public function save_employer() {
+  $id = $this->input->post('id');
+  $data = array(
+      'name' => $this->input->post('name'),
+      'contact' => $this->input->post('contact')
+  );
+
+  if ($id) {
+      $this->Employers_model->update_employer($id, $data);
+  } else {
+      $this->Employers_model->insert_employer($data);
+  }
+
+  redirect('admin/employers');
+}
+
+public function delete_employer($id) {
+  $this->Employers_model->delete_employer($id);
+  redirect('admin/employers');
+}
+
+public function users() {
+  $this->metadata['title'] = 'Users';
+  $this->load->model('Users_model'); // Ensure this model is loaded
+
+  // Fetch the data
+  $data['users'] = $this->Users_model->get_all_users();
+
+// Έλεγχος αν ο εργοδότης έχει κάνει login
+if(!$this->session->userdata('admin_id')) {
+$this->session->set_flashdata('error', "You must login to your account!"); 
+redirect('admin/login');
+}
+
+  // Load the view
+  $admin = $this->admin_model->search($this->session->userdata('admin_id'));
+
+    $data['admin'] = $admin;
+
+  $this->load->view('public/includes/header_admin', $this->metadata);
+  $this->load->view('public/admin/users', $data);
+  $this->load->view('public/includes/footer_admin');
+  
+}
+
+public function user($id = NULL) {
+  if ($id === NULL) {
+      $this->load->view('public/admin/user_form');
+  } else {
+      $data['users'] = $this->Users_model->get_users($id);
+      $this->load->view('public/admin/user_form', $data);
+  }
+}
+
+public function save_user() {
+  $id = $this->input->post('id');
+  $data = array(
+      'name' => $this->input->post('name'),
+      'email' => $this->input->post('email')
+  );
+
+  if ($id) {
+      $this->Users_model->update_user($id, $data);
+  } else {
+      $this->Users_model->insert_user($data);
+  }
+
+  redirect('admin/users');
+}
+
+public function delete_user($id) {
+  $this->Users_model->delete_user($id);
+  redirect('admin/users');
+}
+
+
+public function jobs() {
+  $this->metadata['title'] = 'Jobs';
+  $this->load->model('Jobs_model'); // Ensure this model is loaded
+
+  // Fetch the data
+  $data['jobs'] = $this->Jobs_model->get_all_jobs();
+
+// Έλεγχος αν ο εργοδότης έχει κάνει login
+if(!$this->session->userdata('admin_id')) {
+$this->session->set_flashdata('error', "You must login to your account!"); 
+redirect('admin/login');
+}
+
+  // Load the view
+  $admin = $this->admin_model->search($this->session->userdata('admin_id'));
+
+    $data['admin'] = $admin;
+
+  $this->load->view('public/includes/header_admin', $this->metadata);
+  $this->load->view('public/admin/jobs', $data);
+  $this->load->view('public/includes/footer_admin');
+}
+public function job($id = NULL) {
+  if ($id === NULL) {
+      $this->load->view('public/admin/job_form');
+  } else {
+      $data['job'] = $this->Jobs_model->get_job($id);
+      $this->load->view('public/admin/job_form', $data);
+  }
+}
+
+public function save_job() {
+  $id = $this->input->post('id');
+  $data = array(
+      'title' => $this->input->post('title'),
+      'description' => $this->input->post('description')
+  );
+
+  if ($id) {
+      $this->Jobs_model->update_job($id, $data);
+  } else {
+      $this->Jobs_model->insert_job($data);
+  }
+
+  redirect('admin/jobs');
+}
+
+public function delete_job($id) {
+  $this->Jobs_model->delete_job($id);
+  redirect('admin/jobs');
+}
+
+
+
+
+  // Delete company και admin
   public function deletecompany() {
     $this->metadata['title'] = 'Delete Account/Company';
 
     // Έλεγχος αν ο χρήστης έχει κάνει login
-    if(!$this->session->userdata('employer_id')) {
+    if(!$this->session->userdata('admin_id')) {
       $this->session->set_flashdata('error', "You must login to your account!"); 
-      redirect('employers/login');
+      redirect('admin/login');
     }
 
-    $employer = $this->employers_model->search($this->session->userdata('employer_id'));
-    $company = $this->companies_model->search($employer['company_id']);
+    $admin = $this->admin_model->search($this->session->userdata('admin_id'));
+    $company = $this->companies_model->search($admin['company_id']);
 
-    $this->employers_model->delete($company['id']);
+    $this->admin_model->delete($company['id']);
     $this->session->set_flashdata('success', "Account deleted."); 
     $this->logout();
   }
@@ -468,13 +634,13 @@ class Employers extends CI_Controller {
     $this->metadata['title'] = 'Company Profile';
 
     // Έλεγχος αν ο εργοδότης έχει κάνει login
-    if(!$this->session->userdata('employer_id')) {
+    if(!$this->session->userdata('admin_id')) {
       $this->session->set_flashdata('error', "You must login to your account!"); 
-      redirect('employers/login');
+      redirect('admin/login');
     }
 
-    $employer = $this->employers_model->search($this->session->userdata('employer_id'));
-    $company = $this->companies_model->search($employer['company_id']);
+    $admin = $this->admin_model->search($this->session->userdata('admin_id'));
+    $company = $this->companies_model->search($admin['company_id']);
     $currentYear = date("Y");
     $json_data = file_get_contents(base_url('categories.json'));
     $categoriesArray = json_decode($json_data, true);
@@ -502,10 +668,10 @@ class Employers extends CI_Controller {
 
     // Έλεγχος αν πέτυχε το validation των στοιχείων της εταιρείας
     if ($this->form_validation->run() === FALSE) {
-      $this->load->view('public/includes/header', $this->metadata);
-      $this->load->view('public/includes/employer_menu', $this->metadata);
-      $this->load->view('public/employers/company-profile', $data);
-      $this->load->view('public/includes/footer');
+      $this->load->view('public/includes/header_admin', $this->metadata);
+      $this->load->view('public/includes/admin_menu', $this->metadata);
+      $this->load->view('public/admin/company-profile', $data);
+      $this->load->view('public/includes/footer_admin');
     } else {
       $company_inputs = array(
         'id' => $company['id'],
@@ -538,9 +704,9 @@ class Employers extends CI_Controller {
           $image = $this->upload->data();
         } else {
           $this->session->set_flashdata('error', "Error uploading your image!"); 
-          $this->load->view('public/includes/header', $this->metadata);
+          $this->load->view('public/includes/header_admin', $this->metadata);
           $this->load->view('public/pages/alert');
-          $this->load->view('public/includes/footer');  
+          $this->load->view('public/includes/footer_admin');  
           die(); 
         }
         
@@ -554,7 +720,7 @@ class Employers extends CI_Controller {
         $this->session->set_flashdata('error', "No changes to update."); 
       }
       
-      redirect('employers/profile');
+      redirect('admin/profile');
     }
   }
 
@@ -597,9 +763,9 @@ class Employers extends CI_Controller {
     $this->metadata['title'] = 'Post Job';
 
     // Έλεγχος αν ο εργοδότης έχει κάνει login
-    if(!$this->session->userdata('employer_id')) {
+    if(!$this->session->userdata('admin_id')) {
       $this->session->set_flashdata('error', "You must login to your account!"); 
-      redirect('employers/login');
+      redirect('admin/login');
     }
 
     $json_data = file_get_contents(base_url('categories.json'));
@@ -617,13 +783,13 @@ class Employers extends CI_Controller {
 
     // Έλεγχος αν πέτυχε το validation των στοιχείων του job
     if ($this->form_validation->run() === FALSE) {
-      $this->load->view('public/includes/header', $this->metadata);
-      $this->load->view('public/includes/employer_menu', $this->metadata);
-      $this->load->view('public/employers/postjob', $data);
-      $this->load->view('public/includes/footer');
+      $this->load->view('public/includes/header_admin', $this->metadata);
+      $this->load->view('public/includes/admin_menu', $this->metadata);
+      $this->load->view('public/admin/postjob', $data);
+      $this->load->view('public/includes/footer_admin');
     } else {
-      $employer = $this->employers_model->search($this->session->userdata('employer_id'));
-      $company = $this->companies_model->search($employer['company_id']);
+      $admin = $this->admin_model->search($this->session->userdata('admin_id'));
+      $company = $this->companies_model->search($admin['company_id']);
 
       $job = array(
         'company_id' => $company['id'],
@@ -647,7 +813,7 @@ class Employers extends CI_Controller {
         $this->session->set_flashdata('error', "There was an error posting the job. Try again."); 
       }
       
-      redirect('employers/managejobs');
+      redirect('admin/managejobs');
     }
   }
 
@@ -658,13 +824,13 @@ class Employers extends CI_Controller {
     $job = $this->jobs_model->search($id);
 
     if(is_null($job)) {
-      redirect('employers/managejobs');
+      redirect('admin/managejobs');
     }
 
     // Έλεγχος αν ο εργοδότης έχει κάνει login
-    if(!$this->session->userdata('employer_id')) {
+    if(!$this->session->userdata('admin_id')) {
       $this->session->set_flashdata('error', "You must login to your account!"); 
-      redirect('employers/login');
+      redirect('admin/login');
     }
 
     $json_data = file_get_contents(base_url('categories.json'));
@@ -683,13 +849,13 @@ class Employers extends CI_Controller {
 
     // Έλεγχος αν πέτυχε το validation των στοιχείων του job
     if ($this->form_validation->run() === FALSE) {
-      $this->load->view('public/includes/header', $this->metadata);
-      $this->load->view('public/includes/employer_menu', $this->metadata);
-      $this->load->view('public/employers/editjob', $data);
-      $this->load->view('public/includes/footer');
+      $this->load->view('public/includes/header_admin', $this->metadata);
+      $this->load->view('public/includes/admin_menu', $this->metadata);
+      $this->load->view('public/admin/editjob', $data);
+      $this->load->view('public/includes/footer_admin');
     } else {
-      $employer = $this->employers_model->search($this->session->userdata('employer_id'));
-      $company = $this->companies_model->search($employer['company_id']);
+      $admin = $this->admin_model->search($this->session->userdata('admin_id'));
+      $company = $this->companies_model->search($admin['company_id']);
 
       $job = array(
         'id' => $id,
@@ -714,7 +880,7 @@ class Employers extends CI_Controller {
         $this->session->set_flashdata('error', "There was an error updating the job. Try again."); 
       }
       
-      redirect('employers/managejobs');
+      redirect('admin/managejobs');
     }
   }
 
@@ -734,16 +900,16 @@ class Employers extends CI_Controller {
     $this->metadata['title'] = 'Delete Jobs';
 
     // Έλεγχος αν ο εργοδότης έχει κάνει login
-    if(!$this->session->userdata('employer_id')) {
+    if(!$this->session->userdata('admin_id')) {
       $this->session->set_flashdata('error', "You must login to your account!"); 
-      redirect('employers/login');
+      redirect('admin/login');
     }
 
     $this->jobs_model->delete($id);
 
     $this->session->set_flashdata('success', "Job deleted."); 
   
-    redirect('employers/managejobs');
+    redirect('admin/managejobs');
   }
 
   // Manage Jobs
@@ -751,19 +917,19 @@ class Employers extends CI_Controller {
     $this->metadata['title'] = 'Manage Jobs';
 
     // Έλεγχος αν ο εργοδότης έχει κάνει login
-    if(!$this->session->userdata('employer_id')) {
+    if(!$this->session->userdata('admin_id')) {
       $this->session->set_flashdata('error', "You must login to your account!"); 
-      redirect('employers/login');
+      redirect('admin/login');
     }
 
-    $employer = $this->employers_model->search($this->session->userdata('employer_id'));
-    $company = $this->companies_model->search($employer['company_id']);
+    $admin = $this->admin_model->search($this->session->userdata('admin_id'));
+    $company = $this->companies_model->search($admin['company_id']);
     $data['jobs'] = $this->jobs_model->select_company($company['id']);
 
-    $this->load->view('public/includes/header', $this->metadata);
-    $this->load->view('public/includes/employer_menu', $this->metadata);
-    $this->load->view('public/employers/manage-jobs', $data);
-    $this->load->view('public/includes/footer');
+    $this->load->view('public/includes/header_admin', $this->metadata);
+    $this->load->view('public/includes/admin_menu', $this->metadata);
+    $this->load->view('public/admin/manage-jobs', $data);
+    $this->load->view('public/includes/footer_admin');
   }
 
   // Manage Candidates
@@ -771,9 +937,9 @@ class Employers extends CI_Controller {
     $this->metadata['title'] = 'Manage Candidates';
 
     // Έλεγχος αν ο εργοδότης έχει κάνει login
-    if(!$this->session->userdata('employer_id')) {
+    if(!$this->session->userdata('admin_id')) {
       $this->session->set_flashdata('error', "You must login to your account!"); 
-      redirect('employers/login');
+      redirect('admin/login');
     }
 
     switch($this->input->get('status', TRUE)) {
@@ -786,15 +952,15 @@ class Employers extends CI_Controller {
         $data['candidates'] = $this->jobs_model->job_applications_approved($id);
         break;
       default:
-        redirect('employers/managejobs');
+        redirect('admin/managejobs');
     }
 
     $data['job_id'] = $id;
     
-    $this->load->view('public/includes/header', $this->metadata);
-    $this->load->view('public/includes/employer_menu', $this->metadata);
-    $this->load->view('public/employers/manage-candidates', $data);
-    $this->load->view('public/includes/footer');
+    $this->load->view('public/includes/header_admin', $this->metadata);
+    $this->load->view('public/includes/admin_menu', $this->metadata);
+    $this->load->view('public/admin/manage-candidates', $data);
+    $this->load->view('public/includes/footer_admin');
   }
 
   // Approved Candidate - Notification Email
@@ -827,7 +993,7 @@ class Employers extends CI_Controller {
       $this->session->set_flashdata('error', "There was an error approving the candidate. Try again."); 
     }
 
-    redirect('employers/managecandidates/'.$data['id'].'?status=pending');
+    redirect('admin/managecandidates/'.$data['id'].'?status=pending');
   }
 
   public function candidate_rejection($id) {
@@ -859,7 +1025,7 @@ class Employers extends CI_Controller {
       $this->session->set_flashdata('error', "There was an error rejecting the candidate. Try again."); 
     }
 
-    redirect('employers/managecandidates/'.$data['id'].'?status=pending');
+    redirect('admin/managecandidates/'.$data['id'].'?status=pending');
   }
 
    // View candidate profile
@@ -867,66 +1033,66 @@ class Employers extends CI_Controller {
     $this->metadata['title'] = 'Candidate Profile';
 
     // Έλεγχος αν ο εργοδότης έχει κάνει login
-    if(!$this->session->userdata('employer_id')) {
+    if(!$this->session->userdata('admin_id')) {
       $this->session->set_flashdata('error', "You must login to your account!"); 
-      redirect('employers/login');
+      redirect('admin/login');
     }
 
     $candidate = $this->jobs_model->user_application_data($id);
 
-    $this->load->view('public/includes/header', $this->metadata);
-    $this->load->view('public/includes/employer_menu', $this->metadata);
-    $this->load->view('public/employers/user-profile', $candidate);
-    $this->load->view('public/includes/footer');
+    $this->load->view('public/includes/header_admin', $this->metadata);
+    $this->load->view('public/includes/admin_menu', $this->metadata);
+    $this->load->view('public/admin/user-profile', $candidate);
+    $this->load->view('public/includes/footer_admin');
   }
 
-  // Manage employers
-  public function manageemployers() {
-    $this->metadata['title'] = 'Manage Employers';
+  // Manage admin
+  public function manageadmin() {
+    $this->metadata['title'] = 'Manage Admin';
 
     // Έλεγχος αν ο εργοδότης έχει κάνει login
-    if(!$this->session->userdata('employer_id')) {
+    if(!$this->session->userdata('admin_id')) {
       $this->session->set_flashdata('error', "You must login to your account!"); 
-      redirect('employers/login');
+      redirect('admin/login');
     }
 
-    $employer = $this->employers_model->search($this->session->userdata('employer_id'));
-    $company = $this->companies_model->search($employer['company_id']);
-    $data['employers'] = $this->employers_model->select_company($company['id']);
+    $admin = $this->admin_model->search($this->session->userdata('admin_id'));
+    $company = $this->companies_model->search($admin['company_id']);
+    $data['admin'] = $this->admin_model->select_company($company['id']);
 
-    $this->load->view('public/includes/header', $this->metadata);
-    $this->load->view('public/includes/employer_menu', $this->metadata);
-    $this->load->view('public/employers/manage-employers', $data);
-    $this->load->view('public/includes/footer');
+    $this->load->view('public/includes/header_admin', $this->metadata);
+    $this->load->view('public/includes/admin_menu', $this->metadata);
+    $this->load->view('public/admin/manage-admin', $data);
+    $this->load->view('public/includes/footer_admin');
   }
 
-  // Add employers
-  public function addemployer() {
-    $this->metadata['title'] = 'Add Employer';
+  // Add admin
+  public function addadmin() {
+    $this->metadata['title'] = 'Add Admin';
 
     // Έλεγχος αν ο εργοδότης έχει κάνει login
-    if(!$this->session->userdata('employer_id')) {
+    if(!$this->session->userdata('admin_id')) {
       $this->session->set_flashdata('error', "You must login to your account!"); 
-      redirect('employers/login');
+      redirect('admin/login');
     }
 
     $this->form_validation->set_rules('username', 'Full Name', 'required|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z _-]+$/]');
-    $this->form_validation->set_rules('email', 'Email', 'required|min_length[5]|max_length[100]|valid_email|callback_check_employer_email');
+    $this->form_validation->set_rules('email', 'Email', 'required|min_length[5]|max_length[100]|valid_email|callback_check_admin_email');
     $this->form_validation->set_rules('password', 'Password', 'required|min_length[4]|max_length[100]');
     $this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required|matches[password]');
     $this->form_validation->set_rules('profession', 'Profession', 'required|callback_check_profession');
 
     // Έλεγχος αν πέτυχε το validation των στοιχείων του εργοδότη
     if ($this->form_validation->run() === FALSE) {
-      $this->load->view('public/includes/header', $this->metadata);
-      $this->load->view('public/includes/employer_menu', $this->metadata);
-      $this->load->view('public/employers/add-employer');
-      $this->load->view('public/includes/footer');
+      $this->load->view('public/includes/header_admin', $this->metadata);
+      $this->load->view('public/includes/admin_menu', $this->metadata);
+      $this->load->view('public/admin/add-admin');
+      $this->load->view('public/includes/footer_admin');
     } else {
-      $employer = $this->employers_model->search($this->session->userdata('employer_id'));
-      $company = $this->companies_model->search($employer['company_id']);
+      $admin = $this->admin_model->search($this->session->userdata('admin_id'));
+      $company = $this->companies_model->search($admin['company_id']);
 
-      $employer_inputs = array(
+      $admin_inputs = array(
         'username' => $this->input->post('username'),
         'company_id' => $company['id'],
         'email' => $this->input->post('email'),
@@ -936,41 +1102,41 @@ class Employers extends CI_Controller {
       );
 
       if(!is_null($this->input->post('active'))) {
-        $employer_inputs['active'] = $this->input->post('active');
+        $admin_inputs['active'] = $this->input->post('active');
       }
 
       // Εισαγωγή στοιχείων χρήστη στη Βάση Δεδομένων
-      if($this->employers_model->add($employer_inputs) === 'success') {
-        $this->session->set_flashdata('success', "Employer added."); 
+      if($this->admin_model->add($admin_inputs) === 'success') {
+        $this->session->set_flashdata('success', "Admin added."); 
       } else {
-        $this->session->set_flashdata('error', "There was an error adding the employer. Try again."); 
+        $this->session->set_flashdata('error', "There was an error adding the admin. Try again."); 
       }
       
-      redirect('employers/manageemployers');
+      redirect('admin/manageadmin');
     }
   }
 
-  // Edit employers
-  public function editemployer($id) {
-    $this->metadata['title'] = 'Edit Employer';
+  // Edit admin
+  public function editadmin($id) {
+    $this->metadata['title'] = 'Edit Admin';
 
-    $employer = $this->employers_model->search($id);
+    $admin = $this->admin_model->search($id);
 
-    if(is_null($employer)) {
-      redirect('employers/manageemployers');
+    if(is_null($admin)) {
+      redirect('admin/manageadmin');
     }
 
     // Έλεγχος αν ο εργοδότης έχει κάνει login
-    if(!$this->session->userdata('employer_id')) {
+    if(!$this->session->userdata('admin_id')) {
       $this->session->set_flashdata('error', "You must login to your account!"); 
-      redirect('employers/login');
+      redirect('admin/login');
     }
 
     $this->form_validation->set_rules('username', 'Full Name', 'required|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z _-]+$/]');
     $this->form_validation->set_rules('profession', 'Profession', 'required|callback_check_profession');
 
-    if($employer['email'] != $this->input->post('email')) {
-      $this->form_validation->set_rules('email', 'Email', 'required|min_length[5]|max_length[100]|valid_email|callback_check_employer_email');
+    if($admin['email'] != $this->input->post('email')) {
+      $this->form_validation->set_rules('email', 'Email', 'required|min_length[5]|max_length[100]|valid_email|callback_check_admin_email');
     } else {
       $this->form_validation->set_rules('email', 'Email', 'required|min_length[5]|max_length[100]|valid_email');
     }
@@ -982,12 +1148,12 @@ class Employers extends CI_Controller {
 
     // Έλεγχος αν πέτυχε το validation των στοιχείων του εργοδότη
     if ($this->form_validation->run() === FALSE) {
-      $this->load->view('public/includes/header', $this->metadata);
-      $this->load->view('public/includes/employer_menu', $this->metadata);
-      $this->load->view('public/employers/edit-employer', $employer);
-      $this->load->view('public/includes/footer');
+      $this->load->view('public/includes/header_admin', $this->metadata);
+      $this->load->view('public/includes/admin_menu', $this->metadata);
+      $this->load->view('public/admin/edit-admin', $admin);
+      $this->load->view('public/includes/footer_admin');
     } else {
-      $employer_inputs = array(
+      $admin_inputs = array(
         'id' => $id,
         'username' => $this->input->post('username'),
         'email' => $this->input->post('email'),
@@ -995,51 +1161,51 @@ class Employers extends CI_Controller {
       );
 
       if(!empty($this->input->post('password'))) {
-        $employer_inputs['password'] = password_hash($this->input->post('password'), PASSWORD_BCRYPT, array('cost' => 10));
+        $admin_inputs['password'] = password_hash($this->input->post('password'), PASSWORD_BCRYPT, array('cost' => 10));
       }
 
       if(!is_null($this->input->post('active'))) {
-        $employer_inputs['active'] = $this->input->post('active');
+        $admin_inputs['active'] = $this->input->post('active');
       } else {
-        $employer_inputs['active'] = '1';
+        $admin_inputs['active'] = '1';
       }
 
       // Update στοιχείων χρήστη στη Βάση Δεδομένων
-      if($this->employers_model->update($employer_inputs) === 'success') {
+      if($this->admin_model->update($admin_inputs) === 'success') {
         $this->session->set_flashdata('success', "Changes registered."); 
       } else {
         $this->session->set_flashdata('error', "No changes to update."); 
       }
       
-      redirect('employers/editemployer/'.$id);
+      redirect('admin/editadmin/'.$id);
     }
   }
 
-  // Add/Edit employer validation rule για το profession του employer
+  // Add/Edit admin validation rule για το profession του admin
   public function check_profession($profession) {
-    $this->form_validation->set_message('check_profession', 'The <b>{field}</b> must be one of: Boss, Simple Employer.');
+    $this->form_validation->set_message('check_profession', 'The <b>{field}</b> must be one of: Boss, Simple Admin.');
 
-    if($profession == "Boss" || $profession == "Simple Employer") {
+    if($profession == "Boss" || $profession == "Simple Admin") {
       return TRUE;
     } else {
       return FALSE;
     }
   }
 
-  // Delete employers
-  public function deleteemployer($id) {
-    $this->metadata['title'] = 'Delete Employer';
+  // Delete admin
+  public function deleteadmin($id) {
+    $this->metadata['title'] = 'Delete Admin';
 
     // Έλεγχος αν ο εργοδότης έχει κάνει login
-    if(!$this->session->userdata('employer_id')) {
+    if(!$this->session->userdata('admin_id')) {
       $this->session->set_flashdata('error', "You must login to your account!"); 
-      redirect('employers/login');
+      redirect('admin/login');
     }
 
-    $this->employers_model->delete($id);
+    $this->admin_model->delete($id);
 
-    $this->session->set_flashdata('success', "Employer deleted."); 
+    $this->session->set_flashdata('success', "Admin deleted."); 
   
-    redirect('employers/manageemployers');
+    redirect('admin/manageadmin');
   }
 }

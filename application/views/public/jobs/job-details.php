@@ -36,17 +36,14 @@
 <section class="single-candidate-bottom-area section_70">
    <div class="container">
       <div class="row">
-         <div class="col-md-8 col-lg-9">
+         <div class="col-md-12 col-lg-9">
             <div class="single-candidate-bottom-left">
                <div class="single-candidate-widget">
                   <h3>job Description</h3>
                   <p><?php echo $description; ?></p>
                </div>
             </div>
-         </div>
-         <div class="col-md-4 col-lg-3">
-            <div class="single-candidate-bottom-right">
-               <div class="single-candidate-widget-2">
+            <div class="single-candidate-widget-2">
                   <h3>Job overview</h3>
                   <ul class="job-overview">
                      <li>
@@ -93,8 +90,8 @@
                      </p>
                   </form>
                </div>
-            </div>
          </div>
+      
       </div>
    </div>
 </section>

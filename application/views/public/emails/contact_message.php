@@ -22,7 +22,7 @@
 
     header {
       text-align: center!important;
-      border-bottom: #25AD60 thin solid!important;
+      border-bottom: #FFFFFF thin solid!important;
       padding-bottom: 5px!important;
     }
 
@@ -38,7 +38,7 @@
       display: block!important;
       padding: 15px!important;
       border-radius: 15px!important;
-      background-color: #25AD60!important;
+      background-color: #FFFFFF!important;
       color: white!important;
       font-weight: bold!important;
       text-align: center!important;
@@ -51,7 +51,7 @@
 
     footer {
       text-align: center!important;
-      border-top: #25AD60 thin solid!important;
+      border-top: #FFFFFF thin solid!important;
       padding-top: 10px!important;
     }
 

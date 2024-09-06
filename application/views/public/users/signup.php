@@ -59,7 +59,7 @@
                </div>
                
                <div class="dont_have">
-                  <a href="/employers/signup" class="jobguru-btn">Sign up your company</a>
+                  <a href="../employers/signup" class="jobguru-btn">Sign up your company</a>
                </div>
             </div>
          </div>

@@ -156,6 +156,29 @@ class Jobs_model extends CI_Model {
     return $query->result_array();
   }
 
+  public function get_jobs_count() {
+    return $this->db->count_all('jobs');
+}
+
+public function get_all_jobs() {
+  $query = $this->db->get('jobs');
+  return $query->result(); // Fetches all rows as an array of objects
+}
+
+public function insert_job($data) {
+  return $this->db->insert('jobs', $data);
+}
+
+public function update_job($id, $data) {
+  $this->db->where('id', $id);
+  return $this->db->update('jobs', $data);
+}
+
+public function delete_job($id) {
+  $this->db->where('id', $id);
+  return $this->db->delete('jobs');
+}
+
   // Εύρεση application με βάση το user id
   public function user_applications($id) {
     $this->db->select('jobs.id, title, jobs.created_at AS j_created_at, applications.created_at AS a_created_at, state');

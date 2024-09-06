@@ -91,9 +91,9 @@ class Users extends CI_Controller {
 
     // Έλεγχος αν έγινε η αποστολή του email
     if($this->email->send()) {
-      $this->session->set_flashdata('success_active', "You have successfully created your account.<br>An email has been sent to you, to activate your account!"); 
+      $this->session->set_flashdata('success_active', "You have successfully created your account!."); 
     } else {
-      $this->session->set_flashdata('error_active', "You have successfully created your account.<br>Unfortunately there was a problem sending you the activation email!"); 
+      $this->session->set_flashdata('error_active', "You have successfully created your account!."); 
     }
   }
 

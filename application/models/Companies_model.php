@@ -87,6 +87,24 @@ class Companies_model extends CI_Model {
     $this->db->delete('companies');
   }
 
+  public function get_companies_count() {
+    return $this->db->count_all('companies');
+}
+
+public function insert_company($data) {
+  return $this->db->insert('companies', $data);
+}
+
+public function update_company($id, $data) {
+  $this->db->where('id', $id);
+  return $this->db->update('companies', $data);
+}
+
+public function delete_company($id) {
+  $this->db->where('id', $id);
+  return $this->db->delete('companies');
+}
+
   // ############################################
   // #################### ... ###################
   // ############################################

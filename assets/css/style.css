@@ -41,11 +41,11 @@ p {
 	font-weight: 500;
 	background: transparent;
 	border-radius: 4px;
-	border: 1px solid #25AD60
+	border: 1px solid #FFFFFF
 }
 
 .jobguru-btn:hover {
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	color: #fff
 }
 
@@ -71,7 +71,7 @@ p {
 	color: #fff;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	border-radius: 4px
 }
 
@@ -339,7 +339,7 @@ li {
 }
 
 .pagination li.active a {
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	color: #fff;
 }
 
@@ -399,11 +399,11 @@ li {
 }
 
 .breadcromb-box-pagin ul li.active-breadcromb a {
-	color: #25AD60
+	color: #FFFFFF
 }
 
 .breadcromb-box-pagin ul li a:hover {
-	color: #25AD60;
+	color: #FFFFFF;
 	text-decoration: underline
 }
 
@@ -697,7 +697,7 @@ header, .menu-animation nav > ul > li, .menu-animation, .menu-animation ul > li 
 .post-jobs {
 	display: block;
 	padding: 10px 30px !important;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	border-radius: 40px;
 }
 
@@ -855,7 +855,7 @@ header, .menu-animation nav > ul > li, .menu-animation, .menu-animation ul > li 
 	width: 100%;
 	border: medium none;
 	cursor: pointer;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	color: #fff;
 	border-radius: 0px 4px 4px 0px;
 	-webkit-transition: all 0.4s ease 0s;
@@ -909,7 +909,7 @@ header, .menu-animation nav > ul > li, .menu-animation, .menu-animation ul > li 
 }
 
 .banner-slider .owl-dots .owl-dot.active span, .banner-slider .owl-dots .owl-dot:hover span {
-	background: #25AD60 none repeat scroll 0 0
+	background: #FFFFFF none repeat scroll 0 0
 }
 
 .single-category-holder {
@@ -984,7 +984,7 @@ header, .menu-animation nav > ul > li, .menu-animation, .menu-animation ul > li 
 
 .category-holder-icon i {
 	font-size: 30px;
-	color: #25AD60;
+	color: #FFFFFF;
 	-webkit-transition: all 0.4s ease 0s;
 	transition: all 0.4s ease 0s
 }
@@ -1023,7 +1023,7 @@ header, .menu-animation nav > ul > li, .menu-animation, .menu-animation ul > li 
 	content: "";
 	top: 0;
 	height: 100%;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	width: 30%;
 	border-radius: 50%;
 	left: 23%
@@ -1047,7 +1047,7 @@ header, .menu-animation nav > ul > li, .menu-animation, .menu-animation ul > li 
 	left: 0;
 	width: 39%;
 	height: 100%;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	z-index: -1
 }
 
@@ -1225,13 +1225,13 @@ header, .menu-animation nav > ul > li, .menu-animation, .menu-animation ul > li 
 .company-list-btn a.jobguru-btn {
 	background: transparent none repeat scroll 0 0;
 	color: #111;
-	border: 1px solid #25AD60
+	border: 1px solid #FFFFFF
 }
 
 .company-list-btn a.jobguru-btn:hover {
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	color: #fff;
-	border: 1px solid #25AD60
+	border: 1px solid #FFFFFF
 }
 
 .jobguru-video-area {
@@ -1283,7 +1283,7 @@ header, .menu-animation nav > ul > li, .menu-animation, .menu-animation ul > li 
 	background: #fff none repeat scroll 0 0;
 	border: 2px solid #fff;
 	border-radius: 50%;
-	color: #25AD60;
+	color: #FFFFFF;
 	display: inline-block;
 	font-size: 20px;
 	height: 50px;
@@ -1297,8 +1297,8 @@ header, .menu-animation nav > ul > li, .menu-animation, .menu-animation ul > li 
 }
 
 .popup-youtube:hover i {
-	background: #25AD60 none repeat scroll 0 0;
-	border: 2px solid #25AD60;
+	background: #FFFFFF none repeat scroll 0 0;
+	border: 2px solid #FFFFFF;
 	color: #fff
 }
 
@@ -1332,7 +1332,7 @@ header, .menu-animation nav > ul > li, .menu-animation, .menu-animation ul > li 
 }
 
 .works-box-icon i {
-	color: #25AD60;
+	color: #FFFFFF;
 	font-size: 45px;
 	margin-bottom: 20px
 }
@@ -1451,7 +1451,7 @@ header, .menu-animation nav > ul > li, .menu-animation, .menu-animation ul > li 
 	height: 22%;
 	text-align: center;
 	color: #fff;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	font: 600 17px/23px "Montserrat", sans-serif;
 	padding: 8px 0;
 	left: 5px;
@@ -1601,7 +1601,7 @@ ul.footer-social li a > i {
 }
 
 .single-footer-widget p > i {
-	color: #25AD60;
+	color: #FFFFFF;
 	margin-right: 5px
 }
 
@@ -1743,7 +1743,7 @@ ul.footer-social li a > i {
 	border: medium none;
 	padding: 15px 20px;
 	border-radius: 4px;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	color: #fff;
 	-webkit-transition: all 0.4s ease 0s;
 	transition: all 0.4s ease 0s
@@ -1805,7 +1805,7 @@ ul.footer-social li a > i {
 }
 
 .top-job-company-image h3 a:hover {
-	color: #25AD60
+	color: #FFFFFF
 }
 
 .top-job-company-desc {
@@ -1901,7 +1901,7 @@ ul.footer-social li a > i {
 }
 
 .happy-freelancer-info p {
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	display: inline-block;
 	line-height: normal;
 	color: #fff;
@@ -1937,7 +1937,7 @@ ul.footer-social li a > i {
 }
 
 .happy-freelancer-slider .owl-dots .owl-dot.active span, .happy-freelancer-slider .owl-dots .owl-dot:hover span {
-	background: #25AD60 none repeat scroll 0 0
+	background: #FFFFFF none repeat scroll 0 0
 }
 
 .jobguru-pricing-area.section_70 {
@@ -2034,7 +2034,7 @@ ul.footer-social li a > i {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	z-index: -1
 }
 
@@ -2184,9 +2184,9 @@ ul.footer-social li a > i {
 	height: 100%;
 	width: 10%;
 	cursor: pointer;
-	border: 1px solid #25AD60;
+	border: 1px solid #FFFFFF;
 	color: #fff;
-	background: #25AD60;
+	background: #FFFFFF;
 	border-radius: 0px 4px 4px 0px;
 	-webkit-transition: all 0.4s ease 0s;
 	transition: all 0.4s ease 0s
@@ -2229,7 +2229,7 @@ label.styled:before {
 	transition: all 0.4s ease;
 	opacity: 0;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-	border-right: 2px solid #25AD60
+	border-right: 2px solid #FFFFFF
 }
 
 label.styled:hover:before {
@@ -2243,7 +2243,7 @@ input.styled {
 }
 
 input.styled:checked ~ label.styled {
-	background-color: #25AD60;
+	background-color: #FFFFFF;
 	-webkit-animation: throw 0.5s linear;
 	animation: throw 0.5s linear;
 	color: #fff;
@@ -2337,7 +2337,7 @@ input.styled:checked ~ label.styled:before {
 
 .available-count h4 a:hover {
 	text-decoration: none;
-	color: #25AD60
+	color: #FFFFFF
 }
 
 .single-job-sidebar {
@@ -2421,7 +2421,7 @@ input.styled:checked ~ label.styled:before {
 }
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-	background-color: #25AD60;
+	background-color: #FFFFFF;
 	color: #fff
 }
 
@@ -2446,8 +2446,8 @@ input.styled:checked ~ label.styled:before {
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
-	background-color: #25AD60;
-	border: 1px solid #25AD60;
+	background-color: #FFFFFF;
+	border: 1px solid #FFFFFF;
 	margin-top: 7px;
 	color: #fff
 }
@@ -2547,8 +2547,8 @@ input.styled:checked ~ label.styled:before {
 .checkbox-spin:checked + label span:before {
 	-webkit-transform: rotateZ(180deg);
 	transform: rotateZ(180deg);
-	background: #25AD60;
-	border: 1px solid #25AD60
+	background: #FFFFFF;
+	border: 1px solid #FFFFFF
 }
 
 .form-group.form-radio {
@@ -2580,13 +2580,13 @@ input.styled:checked ~ label.styled:before {
 }
 
 .form-group.form-radio input[type="radio"]:checked + .control-label:before {
-	background-color: #25AD60;
+	background-color: #FFFFFF;
 	box-shadow: inset 0 0 0 4px #f4f4f4
 }
 
 .form-group.form-radio input[type="radio"]:focus + .control-label:before {
 	outline: 0;
-	border-color: #25AD60
+	border-color: #FFFFFF
 }
 
 .form-group.form-radio input[type="radio"]:disabled {
@@ -2640,7 +2640,7 @@ input.styled:checked ~ label.styled:before {
 
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
 	border-radius: 50%;
-	border: 2px solid #25AD60;
+	border: 2px solid #FFFFFF;
 	background: #fff;
 	cursor: pointer
 }
@@ -2685,11 +2685,11 @@ input.styled:checked ~ label.styled:before {
 }
 
 .in.checkbox label:hover {
-	color: #25AD60
+	color: #FFFFFF
 }
 
 .checkbox-spin:checked + label {
-	color: #25AD60
+	color: #FFFFFF
 }
 
 .jobguru-browse-company-area {
@@ -2731,7 +2731,7 @@ input.styled:checked ~ label.styled:before {
 
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
 	color: #fff;
-	background-color: #25AD60;
+	background-color: #FFFFFF;
 	border-color: #dee2e6 #dee2e6 #fff
 }
 
@@ -2753,7 +2753,7 @@ input.styled:checked ~ label.styled:before {
 }
 
 .single-browse-company h3 a:hover {
-	color: #25AD60
+	color: #FFFFFF
 }
 
 .single-browse-company ul {
@@ -2845,7 +2845,7 @@ input.styled:checked ~ label.styled:before {
 	cursor: pointer;
 	display: inline-block;
 	padding: 7px 18px;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	border-radius: 4px;
 	margin: 20px 0
 }
@@ -2973,7 +2973,7 @@ input.styled:checked ~ label.styled:before {
 }
 
 .datepicker td.active, .datepicker td span.active {
-	background: #25AD60 none repeat scroll 0 0 !important
+	background: #FFFFFF none repeat scroll 0 0 !important
 }
 
 .product-upload {
@@ -3032,7 +3032,7 @@ input.styled:checked ~ label.styled:before {
 	color: #fff;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	border-radius: 4px;
 	cursor: pointer
 }
@@ -3072,11 +3072,11 @@ input.styled:checked ~ label.styled:before {
 }
 
 .dashboard-menu li a:hover, .dashboard-menu li.active a {
-	color: #25AD60
+	color: #FFFFFF
 }
 
 .dashboard-menu li.active a i, .dashboard-menu li a:hover i {
-	color: #25AD60
+	color: #FFFFFF
 }
 
 .grid_flex {
@@ -3101,7 +3101,7 @@ input.styled:checked ~ label.styled:before {
 .widget-icon {
 	border: 1px solid #ddd;
 	border-radius: 5px;
-	color: #25AD60;
+	color: #FFFFFF;
 	font-size: 25px;
 	height: 55px;
 	line-height: 55px;
@@ -3124,7 +3124,7 @@ input.styled:checked ~ label.styled:before {
 }
 
 .widget-page-text h2 {
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	border-radius: 5px;
 	color: #fff;
 	display: inline-block;
@@ -3143,7 +3143,7 @@ input.styled:checked ~ label.styled:before {
 }
 
 .welcome-dashboard h3 span {
-	color: #25AD60
+	color: #FFFFFF
 }
 
 .single-input label .twitter {
@@ -3316,7 +3316,7 @@ input.styled:checked ~ label.styled:before {
 
 .nav.navbar-nav.pull-right.custom-menu > li > a {
 	font-size: 18px;
-	color: #25AD60
+	color: #FFFFFF
 }
 
 .nav.navbar-nav.pull-right.custom-menu > li > ul {
@@ -3459,7 +3459,7 @@ input.styled:checked ~ label.styled:before {
 }
 
 .message-text-area button {
-	color: #25AD60;
+	color: #FFFFFF;
 	background: transparent none repeat scroll 0 0;
 	border: medium none;
 	font-size: 19px;
@@ -3608,7 +3608,7 @@ td span {
 	-ms-flex-line-pack: center;
 	align-content: center;
 	padding: 20px;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	margin-right: 15px;
 	border-radius: 5px;
 	position: relative
@@ -3670,7 +3670,7 @@ td span {
 }
 
 .single-balance-box h2 {
-	color: #25AD60;
+	color: #FFFFFF;
 	margin-top: 15px;
 	font-weight: 600;
 	font-family: 'Montserrat', sans-serif;
@@ -3690,7 +3690,7 @@ td span {
 }
 
 .widget_chart_analytics_right > p {
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	border-radius: 5px;
 	color: #fff;
 	margin-bottom: 10px;
@@ -3715,7 +3715,7 @@ td span {
 }
 
 .single-balance-box h3 span a {
-	color: #25AD60
+	color: #FFFFFF
 }
 
 .change-pass form p {
@@ -3747,7 +3747,7 @@ td span {
 	color: #fff;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	border-radius: 4px;
 	cursor: pointer;
 	margin-top: 20px
@@ -3964,7 +3964,7 @@ td span {
 	color: #fff;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	border-radius: 4px;
 	margin-left: 10px;
 	border: 1px solid #25ad6a
@@ -3987,7 +3987,7 @@ td span {
 }
 
 .single-candidate-action a.bookmarks:hover {
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	border: 1px solid #25ad6a
 }
 
@@ -4117,7 +4117,7 @@ ul.job-overview > li > h4 {
 }
 
 .progress-bar-info {
-	background-color: #25AD60
+	background-color: #FFFFFF
 }
 
 .progress-bar {
@@ -4157,7 +4157,7 @@ ul.job-overview > li > h4 {
 
 .single-candidate-widget-2 ul li i {
 	margin-right: 5px;
-	color: #25AD60
+	color: #FFFFFF
 }
 
 .single-candidate-widget-2 > ul.candidate-social > li {
@@ -4179,7 +4179,7 @@ ul.job-overview > li > h4 {
 }
 
 .single-candidate-widget-2 > ul.candidate-social > li > a:hover > i {
-	color: #25AD60
+	color: #FFFFFF
 }
 
 .single-candidate-widget-2 p {
@@ -4217,7 +4217,7 @@ ul.job-overview > li > h4 {
 	color: #fff;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	border-radius: 4px;
 	cursor: pointer;
 	width: 100%
@@ -4244,7 +4244,7 @@ ul.company-desc-list li i {
 	height: 20px;
 	line-height: 22px;
 	text-align: center;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	color: #fff;
 	margin-right: 5px;
 	border-radius: 50%;
@@ -4298,7 +4298,7 @@ ul.company-desc-list li i {
 
 .job-details-meta p i {
 	margin-right: 5px;
-	color: #25AD60
+	color: #FFFFFF
 }
 
 .jobguru-about-page, .jobguru-team-area {
@@ -4537,7 +4537,7 @@ ul.company-desc-list li i {
 }
 
 .blog-categories li a:hover, .blog-thumb-info-content h4 a:hover {
-	color: #25AD60
+	color: #FFFFFF
 }
 
 .Tags-catagory > li {
@@ -4556,7 +4556,7 @@ ul.company-desc-list li i {
 }
 
 .Tags-catagory > li > a:hover {
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	color: #fff
 }
 
@@ -4874,7 +4874,7 @@ ul.company-desc-list li i {
 	color: #fff;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	border-radius: 4px;
 	cursor: pointer
 }
@@ -5007,7 +5007,7 @@ ul.company-desc-list li i {
 	color: #fff;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
-	background: #25AD60 none repeat scroll 0 0;
+	background: #FFFFFF none repeat scroll 0 0;
 	border-radius: 4px;
 	cursor: pointer
 }
@@ -5038,7 +5038,7 @@ ul.company-desc-list li i {
 	.mobileview_menu .post-jobs {
 		display: block;
 		padding: 5px 10px 10px !important;
-		background: #25AD60 none repeat scroll 0 0;
+		background: #FFFFFF none repeat scroll 0 0;
 		border-radius: initial;
 		color: #fff
 	}
@@ -5113,7 +5113,7 @@ ul.company-desc-list li i {
 }
 
 input:checked + .slider {
-	background-color: #25AD60
+	background-color: #FFFFFF
 }
 
 input:focus + .slider {
@@ -5171,13 +5171,13 @@ input:checked + .slider:before {
 
 .image-upload-wrap {
 	margin-top: 20px;
-	border: 4px dashed #25AD60;
+	border: 4px dashed #FFFFFF;
 	position: relative;
 	transition: all .8s
 }
 
 .image-dropping, .image-upload-wrap:hover {
-	background-color: #25AD60;
+	background-color: #FFFFFF;
 	border: 4px dashed #fff;
 	transition: all .8s
 }
@@ -5285,12 +5285,12 @@ input:checked + .slider:before {
 .viewprofile {
 	background: transparent;
 	border-radius: 4px;
-	border: 1px solid #25AD60;
+	border: 1px solid #FFFFFF;
 	color: #000
 }
 
 #slider-range .ui-slider-range, #slider-range-salary .ui-slider-range {
-	background: #25AD60 !important
+	background: #FFFFFF !important
 }
 
 #slider-range, #slider-range-salary {
@@ -5305,7 +5305,7 @@ input:checked + .slider:before {
 }
 
 .circle-color {
-	background-color: #25AD60
+	background-color: #FFFFFF
 }
 
 .no-color {
@@ -5435,7 +5435,7 @@ input:checked + .slider:before {
 	.mobileview_menu .post-jobs {
 		display: block;
 		padding: 5px 10px 10px !important;
-		background: #25AD60 none repeat scroll 0 0;
+		background: #FFFFFF none repeat scroll 0 0;
 		border-radius: initial;
 		color: #fff
 	}
@@ -5526,7 +5526,7 @@ input:checked + .slider:before {
 }
 
 .side-nav .active {
-	background: #25AD60
+	background: #FFFFFF
 }
 
 .side-nav li a {
@@ -5534,7 +5534,7 @@ input:checked + .slider:before {
 }
 
 .side-nav li:hover {
-	background: #25AD60
+	background: #FFFFFF
 }
 
 .side-nav .post-jobs {
@@ -5563,10 +5563,10 @@ input:checked + .slider:before {
 }
 
 .current_page {
-	border-bottom: 3px solid #25AD60;
+	border-bottom: 3px solid #FFFFFF;
 }
 .bottom-menu-btns a{
-	background: #25AD60 !important;
+	background: #FFFFFF !important;
 	text-align: center;
 	color: white;
 	border-bottom: 2px solid black;
