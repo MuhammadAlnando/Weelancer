@@ -175,8 +175,8 @@ public function update_job($id, $data) {
 }
 
 public function delete_job($id) {
-  $this->db->where('id', $id);
-  return $this->db->delete('jobs');
+  // Use CodeIgniter's database class to delete the record
+  return $this->db->delete('jobs', array('id' => $id));
 }
 
   // Εύρεση application με βάση το user id

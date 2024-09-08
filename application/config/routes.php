@@ -61,4 +61,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['training1'] = 'pages/training1';
+$route['admin/employers/edit/(:num)'] = 'admin/employers/edit/$1';
+
+$route['admin/employers/delete/(:num)'] = 'admin/employers/delete/$1';
 

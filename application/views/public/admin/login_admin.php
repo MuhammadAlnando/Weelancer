@@ -46,7 +46,7 @@
                         </div>
                         
                         <div class="single-login-field">
-                           <button id="form-btn" type="submit">&nbsp;Login&nbsp;<i class='fa fa-spinner fa-spin' style="display:none;"></i></button>
+                           <button id="form-btn" type="submit" style="background-color: #A52A2A;">&nbsp;Login&nbsp;<i class='fa fa-spinner fa-spin' style="display:none;"></i></button>
                         </div>
                      </form>
                 </div>

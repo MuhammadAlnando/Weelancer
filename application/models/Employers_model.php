@@ -137,8 +137,8 @@ public function get_all_employers() {
   return $query->result(); // Fetches all rows as an array of objects
 }
 
-public function insert_employer($data) {
-  return $this->db->insert('employers', $data);
+public function get_employer_by_id($id) {
+  return $this->db->get_where('employers', array('id' => $id))->row();
 }
 
 public function update_employer($id, $data) {
@@ -147,9 +147,13 @@ public function update_employer($id, $data) {
 }
 
 public function delete_employer($id) {
+  // Hapus employer berdasarkan ID
   $this->db->where('id', $id);
-  return $this->db->delete('employers');
+  return $this->db->delete('employers'); // Tabel employers
 }
+
+
+
 
   // Ενεργοποίηση Λογαριασμού (update active status)
   public function activation($employer) {

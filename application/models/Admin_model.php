@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin_model extends CI_Model {
+class admin_model extends CI_Model {
 
   // Μαζί με το model φορτώνουμε την database
   public function __construct() {

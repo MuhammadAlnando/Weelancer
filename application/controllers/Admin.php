@@ -10,9 +10,10 @@ class Admin extends CI_Controller {
 
   public function __construct() {
     parent::__construct();
-    $this->load->model('companies_model');
+    $this->load->model('Companies_model');
     $this->load->model('admin_model');
-    $this->load->model('jobs_model');
+    $this->load->model('Jobs_model');
+    $this->load->model('Users_model');
   }
 
   // ##########################################################################
@@ -123,6 +124,10 @@ class Admin extends CI_Controller {
       }
     }
   }
+
+ 
+
+
 
   // Sign up validation rule για το category της εταιρείας 
   public function check_category($category) {
@@ -423,6 +428,8 @@ class Admin extends CI_Controller {
         $this->load->model('Employers_model');
         $this->load->model('Companies_model');
         $this->load->model('Jobs_model');
+        $this->load->model('admin_model');
+
 
         $data['users_count'] = $this->Users_model->get_users_count();
         $data['employers_count'] = $this->Employers_model->get_employers_count();
@@ -451,9 +458,13 @@ class Admin extends CI_Controller {
 public function employers() {
   $this->metadata['title'] = 'Employers';
   $this->load->model('Employers_model'); // Ensure this model is loaded
+  $this->load->model('Companies_model'); // Pastikan model ini sudah ada
 
   // Fetch the data
   $data['employers'] = $this->Employers_model->get_all_employers();
+
+    // Ambil data title dari tabel companies
+    $data['companies'] = $this->Companies_model->get_companies_titles();
 
 // Έλεγχος αν ο εργοδότης έχει κάνει login
 if(!$this->session->userdata('admin_id')) {
@@ -470,6 +481,47 @@ redirect('admin/login');
   $this->load->view('public/admin/employers', $data);
   $this->load->view('public/includes/footer_admin');
 }
+
+public function edit($id) {
+  $this->load->model('employers_model');
+  
+  // Ambil data employer berdasarkan ID
+  $employer = $this->employers_model->get_employer_by_id($id);
+  
+  if ($this->input->post()) {
+      // Update data employer
+      $data = array(
+          'username' => $this->input->post('username'),
+          'email' => $this->input->post('email')
+      );
+      
+      $this->employers_model->update_employer($id, $data);
+      redirect('admin/employers');
+  }
+  
+  $data['employer'] = $employer;
+  $this->load->view('admin/edit_employer', $data);
+}
+
+public function delete_employer($id)
+{
+    $this->load->model('Employers_model');
+    
+    // Cek apakah employer ada
+    if ($this->Employers_model->delete_employer($id)) {
+        // Set pesan sukses dan redirect ke halaman employers
+        $this->session->set_flashdata('success', 'Employer deleted successfully.');
+    } else {
+        // Set pesan error jika gagal
+        $this->session->set_flashdata('error', 'Failed to delete employer.');
+    }
+
+    // Redirect kembali ke halaman employers
+    redirect('admin/employers');
+}
+
+
+
 
 public function employer($id = NULL) {
   if ($id === NULL) {
@@ -496,10 +548,6 @@ public function save_employer() {
   redirect('admin/employers');
 }
 
-public function delete_employer($id) {
-  $this->Employers_model->delete_employer($id);
-  redirect('admin/employers');
-}
 
 public function users() {
   $this->metadata['title'] = 'Users';
@@ -551,10 +599,13 @@ public function save_user() {
 }
 
 public function delete_user($id) {
-  $this->Users_model->delete_user($id);
+  if ($this->Users_model->delete_user($id)) {
+      $this->session->set_flashdata('success', 'User deleted successfully.');
+  } else {
+      $this->session->set_flashdata('error', 'Failed to delete user.');
+  }
   redirect('admin/users');
 }
-
 
 public function jobs() {
   $this->metadata['title'] = 'Jobs';
@@ -604,7 +655,14 @@ public function save_job() {
 }
 
 public function delete_job($id) {
-  $this->Jobs_model->delete_job($id);
+  // Check if the ID is valid
+  if ($id && $this->Jobs_model->delete_job($id)) {
+      // Set success message and redirect
+      $this->session->set_flashdata('success', 'Job deleted successfully');
+  } else {
+      // Set error message and redirect
+      $this->session->set_flashdata('error', 'Failed to delete job');
+  }
   redirect('admin/jobs');
 }
 
@@ -612,22 +670,30 @@ public function delete_job($id) {
 
 
   // Delete company και admin
-  public function deletecompany() {
-    $this->metadata['title'] = 'Delete Account/Company';
+  public function companies() {
+    $this->load->model('Companies_model');
 
-    // Έλεγχος αν ο χρήστης έχει κάνει login
-    if(!$this->session->userdata('admin_id')) {
-      $this->session->set_flashdata('error', "You must login to your account!"); 
-      redirect('admin/login');
-    }
+    // Fetch data for the view
+    $data['companies'] = $this->Companies_model->get_all_companies(); // Adjust method as needed
 
-    $admin = $this->admin_model->search($this->session->userdata('admin_id'));
-    $company = $this->companies_model->search($admin['company_id']);
-
-    $this->admin_model->delete($company['id']);
-    $this->session->set_flashdata('success', "Account deleted."); 
-    $this->logout();
+    // Load the view
+    $this->load->view('admin/companies', $data);
   }
+
+public function delete_company($id) {
+    if ($id) {
+        // Menghapus perusahaan
+        if ($this->Companies_model->delete_company($id)) {
+            $this->session->set_flashdata('success', 'Company deleted successfully');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to delete company');
+        }
+    } else {
+        $this->session->set_flashdata('error', 'Invalid company ID');
+    }
+    redirect('admin/companies');
+}
+
 
   // Company Profile
   public function profile() {

@@ -119,14 +119,17 @@ class Users_model extends CI_Model {
   }
 
   // Διαγραφή Χρήστη
-  public function delete($id = NULL) {
+  public function delete_user($id) {
     $this->db->where('id', $id);
-    $this->db->delete('users');
-  }
+    return $this->db->delete('users');
+}
+
 
   public function get_users_count() {
     return $this->db->count_all('users');
 }
+
+
 
 
 
@@ -144,10 +147,6 @@ public function update_user($id, $data) {
   return $this->db->update('users', $data);
 }
 
-public function delete_user($id) {
-  $this->db->where('id', $id);
-  return $this->db->delete('users');
-}
 
   // Ενεργοποίηση Λογαριασμού (update active status)
   public function activation($user) {

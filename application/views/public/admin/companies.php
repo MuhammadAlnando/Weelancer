@@ -39,7 +39,6 @@
     <!-- Content Area -->
     <div class="content">
         <h1>Companies</h1>
-        <a href="<?php echo site_url('admin/companies/add'); ?>" class="btn btn-primary mb-3"><i class="fa fa-plus"></i> Add Company</a>
         <table class="table table-striped">
             <thead>
                 <tr>
